@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading;
 using MFiles.Extensibility.ExternalObjectTypes;
 using MFiles.Extensibility.Framework.ExternalObjectTypes;
-using SyncMatrixDataReport.Formatter;
 
-namespace SyncMatrixDataReport
+namespace SyncMatrixDataReport1._0
 {
 	/// <summary>
 	/// An implementation of IExternalObjectTypeConnection,
@@ -50,13 +49,15 @@ namespace SyncMatrixDataReport
 		{
 			// Set.
 			this.Config = config;
-        }
-        /// <summary>
-        /// Close connection.
-        /// </summary>
-        public override void CloseConnectionImpl()
+		}
+
+		/// <summary>
+		/// Close connection.
+		/// </summary>
+		public override void CloseConnectionImpl()
 		{
 			// TODO: Close any connection, if needed.
+			
 		}
 	}
 }

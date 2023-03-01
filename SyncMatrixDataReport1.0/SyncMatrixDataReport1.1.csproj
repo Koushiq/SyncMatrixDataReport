@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF2D1C2E-E188-4EC6-92D1-4F2D2A45924D}</ProjectGuid>
+    <ProjectGuid>{99C3B4BF-EB9E-487F-B212-D06C5B487000}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SyncMatrixDataReport</RootNamespace>
-    <AssemblyName>SyncMatrixDataReport</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <RootNamespace>SyncMatrixDataReport1._1</RootNamespace>
+    <AssemblyName>SyncMatrixDataReport1._1</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -42,6 +42,7 @@
     <Compile Include="DataSourceConnection.Insert.cs" />
     <Compile Include="DataSourceConnection.Read.cs" />
     <Compile Include="DataSourceConnection.Update.cs" />
+    <Compile Include="DMSDefaults.cs" />
     <Compile Include="Formatter\JsonToModelFormatter.cs" />
     <Compile Include="Model\InitializationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,11 +91,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
-    <Delete Files="bin\$(Configuration)\SyncMatrixDataReport.mfappx" />
+    <Delete Files="bin\$(Configuration)\SyncMatrixDataReport1._1.mfappx" />
     <CreateItem Include="bin\$(Configuration)\**\*.*">
       <Output ItemName="ZipFiles" TaskParameter="Include" />
     </CreateItem>
-    <Zip ZipFileName="bin\$(Configuration)\SyncMatrixDataReport.mfappx" WorkingDirectory="$(TargetDir)" Files="@(ZipFiles)" />
+    <Zip ZipFileName="bin\$(Configuration)\SyncMatrixDataReport1._1.mfappx" WorkingDirectory="$(TargetDir)" Files="@(ZipFiles)" />
   </Target>
   <Import Project="..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" Condition="Exists('..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

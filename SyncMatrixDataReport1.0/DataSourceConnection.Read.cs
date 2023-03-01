@@ -4,7 +4,7 @@ using MFiles.Extensibility.ExternalObjectTypes;
 using MFiles.Extensibility.Framework.ExternalObjectTypes;
 using SyncMatrixDataReport.Formatter;
 
-namespace SyncMatrixDataReport
+namespace SyncMatrixDataReport1._0
 {
 	/// <summary>
 	/// An implementation of IExternalObjectTypeConnection,
@@ -51,7 +51,7 @@ namespace SyncMatrixDataReport
             var list = new List<DataItemSimple>();
             var models = JsonToModelFormatter.GetAllNodesAsModel();
             var dictionary = new Dictionary<int, object>();
-            var ordinalNumber = 1; 
+            var ordinalNumber = 1;
             foreach (var model in models)
             {
                 try
@@ -66,14 +66,13 @@ namespace SyncMatrixDataReport
                     }
                     ordinalNumber++;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
 
                 }
-                
+
             }
             var dataItemSimple = new DataItemSimple(dictionary);
-
             list.Add(dataItemSimple);
             return list;
         }

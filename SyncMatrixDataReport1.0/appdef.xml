@@ -3,16 +3,16 @@
 			type="server-application"
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:noNamespaceSchemaLocation="http://www.m-files.com/schemas/appdef-server-v3.xsd">
-	<guid>9948a8b8-fb30-40db-bdea-887ad09298d8</guid>
-  <name>SyncMatrixDataReport0.2</name>
+	<guid>546d07b4-fda5-445e-a042-8d6f3617c700</guid>
+  <name>SyncMatrixDataReport1._1</name>
 	<description></description>
 	<publisher></publisher>
-	<version>0.2</version>
+	<version>1.1</version>
 	<copyright></copyright>
 	<required-mfiles-version>20.9.9430</required-mfiles-version>
 	<multi-server-compatible>true</multi-server-compatible>
 	<application-object>
-		<assembly>SyncMatrixDataReport0.2.dll</assembly>
-		<class>SyncMatrixDataReport.Application</class>
+		<assembly>SyncMatrixDataReport1._1.dll</assembly>
+		<class>SyncMatrixDataReport1._1.Application</class>
 	</application-object>
 </application>

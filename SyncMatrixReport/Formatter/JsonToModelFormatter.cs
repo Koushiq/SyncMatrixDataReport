@@ -1,64 +1,57 @@
 ﻿using Newtonsoft.Json;
-using SyncMatrixDataReport.Model;
+using SyncMatrixReport.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SyncMatrixDataReport.Formatter
+namespace SyncMatrixReport.Formatter
 {
-    public class ApiResponseModel
-    {
-        [JsonProperty("entities")]
-        public IList<object> Entities { get; set; }
-    }
     public class JsonToModelFormatter
     {
-        private static Dictionary<string, string> propertyTypeMapping = new Dictionary<string, string>()
-        {
-            { "AANID","int" },
-            { "LAND","string" },
-            { "PLZ","string" },
-            { "PTT_ZUSATZ","int" },
-            { "ORT","string" },
-
+        private static Dictionary<string, string> propertyTypeMapping= new Dictionary<string, string>() {
+            {"AANID","int" },
+            {"LAND","sttring" },
+            {"PLZ","string" },
+            {"PTT_ZUSATZ","int" },
+            {"ORT","string" }
         };
         public const string AvaliableDataTypes = "{selectOptions:[\"int\",\"string\"]}";
 
 
-        private static string GetPropertyTypeByKey(string property)
+        public static string GetPropertyTypeByKey(string property)
         {
+            //if(propertyTypeMapping == null)
+            //{
+            //    propertyTypeMapping = SetPropertyTypeMapping();
+            //}
             var value = propertyTypeMapping[property];
             return value;
         }
 
-        public static List<InitializationModel> GetAllNodesAsModel()
+        public static EntityListModel GetAllNodesAsModel()
         {
             var pathToJsonFile = "Assests/add_report_01_api_response.json";
-            var list = new List<InitializationModel>();
             pathToJsonFile = System.AppDomain.CurrentDomain.BaseDirectory + pathToJsonFile;
+            var model = new EntityListModel(); 
             try
             {
                 if (File.Exists(pathToJsonFile))
                 {
                     var str = File.ReadAllText(pathToJsonFile);
                     var deserializedValue = JsonConvert.DeserializeObject<ApiResponseModel>(str);
-                    var nodes = deserializedValue.Entities.ToList();
-
-                    foreach (var node in nodes)
+                    var entities = deserializedValue.Entities.ToList();
+                    
+                    foreach (var entity in entities)
                     {
-                        var currentNode = JsonConvert.DeserializeObject<Dictionary<string, string>>(node.ToString());
-                        foreach (var kp in currentNode)
+                        var deserializedEntity = JsonConvert.DeserializeObject<Dictionary<string, string>>(entity.ToString());
+                        var dictionary = new Dictionary<string, string>();
+                        foreach (var prop in deserializedEntity)
                         {
-                            list.Add(new InitializationModel()
-                            {
-                                PropertyName = kp.Key,
-                                PropertyType = GetPropertyTypeByKey(kp.Key),
-                                PropertyValue = kp.Value
-                            });
+                            dictionary.Add(prop.Key, prop.Value);
                         }
+                        model.Entities.Add(new EntityModel() { Entity = dictionary });
+
                     }
                 }
             }
@@ -67,7 +60,17 @@ namespace SyncMatrixDataReport.Formatter
 
             }
 
-            return list;
+            return model;
+        }
+        private static Dictionary<string,string> SetPropertyTypeMapping()
+        {
+            var firstNode = GetFirstNode();
+            var dictionary = new Dictionary<string, string>();
+            foreach (var prop in firstNode)
+            {
+                dictionary.Add(prop.PropertyName,prop.PropertyType);
+            }
+            return dictionary;
         }
         public static List<InitializationModel> GetFirstNode()
         {
@@ -91,7 +94,6 @@ namespace SyncMatrixDataReport.Formatter
                             {
                                 PropertyName = kp.Key,
                                 PropertyType = GetPropertyTypeByKey(kp.Key),
-                                PropertyValue = kp.Value
                             });
                         }
                     }
