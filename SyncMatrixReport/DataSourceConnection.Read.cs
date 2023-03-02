@@ -2,6 +2,7 @@ using MFiles.Extensibility.ExternalObjectTypes;
 using SyncMatrixReport.Formatter;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace SyncMatrixReport
@@ -21,7 +22,8 @@ namespace SyncMatrixReport
         {
             // TODO: Return the column definitions that are supported for the current configuration.
             // NOTE: You may need to use "this.Config.CustomConfiguration" to see what's configured.
-            var fields = JsonToModelFormatter.GetFirstNode();
+            var avaliableColums = this.Config.CustomConfiguration.AvaliableColums;
+            var fields = (avaliableColums != null && avaliableColums.Any()) ? avaliableColums : JsonToModelFormatter.GetFirstNode();
             var list = new List<ColumnDefinition>();
             var ordinalCounter = 1;
 
@@ -48,7 +50,7 @@ namespace SyncMatrixReport
             // NOTE: You will probably want to return instances of DataItemSimple.
             var list = new List<DataItemSimple>();
             var model = JsonToModelFormatter.GetAllNodesAsModel();
-            
+             
             foreach (var entity in model.Entities)
             {
                 var dictionary = new Dictionary<int, object>();

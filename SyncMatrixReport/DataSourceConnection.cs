@@ -56,6 +56,7 @@ namespace SyncMatrixReport
         {
             var firstNode = JsonToModelFormatter.GetFirstNode();
             this.Config.CustomConfiguration.AvaliableColums = firstNode;
+            JsonToModelFormatter.SetAvaliableColumnsInFormatter(this.Config.CustomConfiguration.AvaliableColums);
         }
         #endregion
         /// <summary>

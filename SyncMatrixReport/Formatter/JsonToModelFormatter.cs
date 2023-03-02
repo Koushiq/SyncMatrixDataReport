@@ -10,23 +10,46 @@ namespace SyncMatrixReport.Formatter
 {
     public class JsonToModelFormatter
     {
-        private static Dictionary<string, string> propertyTypeMapping= new Dictionary<string, string>() {
-            {"AANID","int" },
-            {"LAND","string" },
-            {"PLZ","string" },
-            {"PTT_ZUSATZ","int" },
-            {"ORT","string" }
-        };
+        private static Dictionary<string, string> propertyTypeMapping;
+        //= new Dictionary<string, string>() {
+        //    {"AANID","int" },
+        //    {"LAND","string" },
+        //    {"PLZ","string" },
+        //    {"PTT_ZUSATZ","int" },
+        //    {"ORT","string" }
+        //};
         private static string PATH_TO_FILE = "Assests/add_report_01_api_response.json";
         public const string AvaliableDataTypes = "{selectOptions:[\"int\",\"string\",\"date-time\"]}";
-
+        private static List<Model.InitializationModel> initializationModels;
+        public static void SetAvaliableColumnsInFormatter(List<Model.InitializationModel> models)
+        {
+            initializationModels = models;
+        }
 
         public static string GetPropertyTypeByKey(string property)
         {
-            //if(propertyTypeMapping == null)
-            //{
-            //    propertyTypeMapping = SetPropertyTypeMapping();
-            //}
+            if (propertyTypeMapping == null)
+            {
+                propertyTypeMapping = new Dictionary<string, string>();
+
+                if (initializationModels !=null && initializationModels.Any())
+                {
+                    foreach (var model in initializationModels)
+                    {
+                        propertyTypeMapping.Add(model.PropertyName, model.PropertyType);
+                    }
+                }
+                else
+                {
+                    propertyTypeMapping = new Dictionary<string, string>() {
+                        {"AANID","int" },
+                        {"LAND","string" },
+                        {"PLZ","string" },
+                        {"PTT_ZUSATZ","int" },
+                        {"ORT","string" }
+                    };
+                }
+            }
             var value = propertyTypeMapping[property];
             return value;
         }
