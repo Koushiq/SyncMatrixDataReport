@@ -23,6 +23,10 @@ namespace SyncMatrixReport.Formatter
 
         public static string GetPropertyTypeByKey(string property)
         {
+            //if(propertyTypeMapping == null)
+            //{
+            //    propertyTypeMapping = SetPropertyTypeMapping();
+            //}
             var value = propertyTypeMapping[property];
             return value;
         }
