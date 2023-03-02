@@ -13,7 +13,6 @@ namespace SyncMatrixReport.Model
         [JsonConfEditor(TypeEditor = "options",
         Options = JsonToModelFormatter.AvaliableDataTypes)]
         public string PropertyType { get; set; }
-        [DataMember]
-        public string PropertyValue { get; set; }
+        
     }
 }

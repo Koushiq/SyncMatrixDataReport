@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SyncMatrixReport.Model;
+using SyncMatrixReport.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,27 +12,24 @@ namespace SyncMatrixReport.Formatter
     {
         private static Dictionary<string, string> propertyTypeMapping= new Dictionary<string, string>() {
             {"AANID","int" },
-            {"LAND","sttring" },
+            {"LAND","string" },
             {"PLZ","string" },
             {"PTT_ZUSATZ","int" },
             {"ORT","string" }
         };
-        public const string AvaliableDataTypes = "{selectOptions:[\"int\",\"string\"]}";
+        private static string PATH_TO_FILE = "Assests/add_report_01_api_response.json";
+        public const string AvaliableDataTypes = "{selectOptions:[\"int\",\"string\",\"date-time\"]}";
 
 
         public static string GetPropertyTypeByKey(string property)
         {
-            //if(propertyTypeMapping == null)
-            //{
-            //    propertyTypeMapping = SetPropertyTypeMapping();
-            //}
             var value = propertyTypeMapping[property];
             return value;
         }
 
         public static EntityListModel GetAllNodesAsModel()
         {
-            var pathToJsonFile = "Assests/add_report_01_api_response.json";
+            var pathToJsonFile = PATH_TO_FILE;
             pathToJsonFile = System.AppDomain.CurrentDomain.BaseDirectory + pathToJsonFile;
             var model = new EntityListModel(); 
             try
@@ -74,7 +72,7 @@ namespace SyncMatrixReport.Formatter
         }
         public static List<InitializationModel> GetFirstNode()
         {
-            var pathToJsonFile = "Assests/add_report_01_api_response.json";
+            var pathToJsonFile = PATH_TO_FILE;
             var list = new List<InitializationModel>();
             pathToJsonFile = System.AppDomain.CurrentDomain.BaseDirectory + pathToJsonFile;
             try

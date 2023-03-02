@@ -1,4 +1,5 @@
 using MFiles.VAF.Configuration;
+using SyncMatrixReport.Model;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -11,7 +12,7 @@ namespace SyncMatrixReport
     [JsonConfEditor]
     public class ConfigurationRoot
     {
-        //[DataMember]
-        //public Dictionary<MFIdentifier,string> AvaliableProperties { get; set; } 
+        [DataMember]
+        public List<InitializationModel> AvaliableColums { get; set; }
     }
 }

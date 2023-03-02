@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace SyncMatrixReport.Formatter
+namespace SyncMatrixReport.Models
 {
     public class ApiResponseModel
     {
