@@ -13,6 +13,6 @@ namespace SyncMatrixReport
     public class ConfigurationRoot
     {
         [DataMember]
-        public List<InitializationModel> AvaliableColums { get; set; }
+        public List<InitializationModel> AvaliableColums = new List<InitializationModel>();
     }
 }

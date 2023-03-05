@@ -23,7 +23,7 @@ namespace SyncMatrixReport
             // TODO: Return the column definitions that are supported for the current configuration.
             // NOTE: You may need to use "this.Config.CustomConfiguration" to see what's configured.
             var avaliableColums = this.Config.CustomConfiguration.AvaliableColums;
-            var fields = (avaliableColums != null && avaliableColums.Any()) ? avaliableColums : JsonToModelFormatter.GetFirstNode();
+            var fields = (avaliableColums != null && avaliableColums.Count>0) ? avaliableColums : JsonToModelFormatter.GetFirstNode();
             var list = new List<ColumnDefinition>();
             var ordinalCounter = 1;
 
