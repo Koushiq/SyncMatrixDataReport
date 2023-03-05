@@ -1,0 +1,7 @@
+﻿{
+  "AANID": "int",
+  "LAND": "string",
+  "PLZ": "string",
+  "PTT_ZUSATZ": "int",
+  "ORT": "string"
+}

@@ -1,5 +1,6 @@
 using MFiles.Extensibility.ExternalObjectTypes;
 using MFiles.Extensibility.Framework.ExternalObjectTypes;
+using SyncMatrixReport.Formatter;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -48,8 +49,16 @@ namespace SyncMatrixReport
         {
             // Set.
             this.Config = config;
+            this.Initialize();
         }
-
+        #region utility
+        private void Initialize()
+        {
+            var firstNode = JsonToModelFormatter.GetFirstNode();
+            this.Config.CustomConfiguration.AvaliableColums = firstNode;
+            JsonToModelFormatter.SetAvaliableColumnsInFormatter(this.Config.CustomConfiguration.AvaliableColums);
+        }
+        #endregion
         /// <summary>
         /// Close connection.
         /// </summary>
