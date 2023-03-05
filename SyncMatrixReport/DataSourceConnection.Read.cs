@@ -1,3 +1,4 @@
+using MFiles.Extensibility.Applications;
 using MFiles.Extensibility.ExternalObjectTypes;
 using SyncMatrixReport.Formatter;
 using System;
@@ -50,7 +51,7 @@ namespace SyncMatrixReport
             // NOTE: You will probably want to return instances of DataItemSimple.
             var list = new List<DataItemSimple>();
             var model = JsonToModelFormatter.GetAllNodesAsModel();
-             
+            
             foreach (var entity in model.Entities)
             {
                 var dictionary = new Dictionary<int, object>();
